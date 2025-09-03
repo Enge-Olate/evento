@@ -1,22 +1,27 @@
-const aniversario = new Date('April 26, 2026 17:00:00');
-const opcoes ={
-    timeZone: 'UTC',
-    year: 'numeric',
-    month: 'numeric',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric'
-};
-const agora = new Date();
-console.log(agora.toLocaleString('pt-BR', opcoes));
-console.log(aniversario.toLocaleString('pt-BR', opcoes));
-let diferencaData = aniversario - agora;
-console.log(diferencaData);
-const diaEmMs = 1000 * 60**2 *24;
-const horasEmMs = 1000 * 60**2;
-const minutosEmMs = 1000 * 60;
-console.log('dias:',Math.floor(diferencaData /diaEmMs));
-console.log('horas:', ((diferencaData % diaEmMs) / horasEmMs).toFixed(3));
-console.log('minutos:',Math.floor((diferencaData % horasEmMs)/minutosEmMs));
-console.log('segundos:',Math.floor((diferencaData % minutosEmMs)/1000));
+const aniversario = new Date('Sep 17, 2025 20:00:00');
+const tempoAniversario = aniversario.getTime();
+
+function dias(){
+    return 1000 * 60 **2 *24;
+}
+function horas(){
+    return 1000 * 60**2;
+}
+function minutos(){
+    return 1000 * 60;
+}
+const contandoHoras = setInterval(() => {
+    let agora = new Date();
+    let tempoAgora = agora.getTime();
+    let diferenca = tempoAniversario - tempoAgora;
+    document.querySelector('p').innerHTML=`
+        ${Math.floor(diferenca / dias())}d
+        ${((diferenca % dias())/horas()).toFixed(2)}h
+        ${((diferenca % horas())/minutos()).toFixed(2)}m
+        ${Math.floor((diferenca % minutos())/ 1000)}s
+    `
+    if(diferenca < 0){
+        clearInterval(contandoHoras);
+        document.querySelector('p').innerHTML='Expirado!';
+    }
+}, 1000);
