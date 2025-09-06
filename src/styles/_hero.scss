@@ -1,5 +1,5 @@
 .hero {
-  width: 100%;
+  width: 1366px;
   height: 561px;
   background-image: url("/src/imagens/fundo.png");
   background-repeat: no-repeat;
@@ -7,6 +7,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
   &__logo {
     width: 193.74px;
     height: 80px;
@@ -20,23 +23,43 @@
     line-height: 46px;
     color: #ffffff;
     text-align: center;
+    @media (max-width: 768px) {
+      font-size: 20px;
+      width: 598px;
+      height: auto;
+    }
   }
   &__barra {
     width: 960px;
     height: 77px;
-    margin-top:67px;
+    margin-top: 67px;
     display: flex;
     align-items: center;
     justify-content: space-around;
     background-color: #ffffff;
+    @media (max-width: 768px) {
+      width: 598px;
+      height: auto;
+      margin-top: 20px;
+      flex-direction: column;
+      justify-content: space-between;
+    }
     &__infos {
       list-style: none;
       display: flex;
+      @media (max-width: 768px) {
+        // display: block;
+        margin: 20px auto;
+      }
       &__item {
         display: flex;
         flex-direction: column;
-        align-content: center;
+        align-content: space-around;
         margin-right: 40px;
+        @media (max-width: 768px) {
+          margin-right: 20px;
+          font-size: 1rem;
+        }
       }
     }
     .button {
@@ -46,10 +69,18 @@
       cursor: pointer;
       background-color: #4f2ac3;
       color: #ffffff;
-      &--primary{
+      @media (max-width: 768px) {
+        width: 100%;
+        cursor: pointer;
+      }
+      &--primary {
         text-align: center;
         font-size: 16px;
         white-space: nowrap;
+        @media (max-width: 768px) {
+          font-size: 1.2rem;
+          text-transform: uppercase;
+        }
       }
     }
   }
